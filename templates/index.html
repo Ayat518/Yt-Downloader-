@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free YouTube Video Downloader</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; text-align: center; background-color: #f9f9f9; margin-top: 80px; }
+        .box { background: white; padding: 40px; border-radius: 12px; display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 500px; width: 90%; }
+        h2 { color: #333; margin-bottom: 20px; }
+        input { width: 75%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 16px; outline: none; }
+        input:focus { border-color: #ff0000; }
+        button { padding: 12px 25px; background-color: #ff0000; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+        button:hover { background-color: #cc0000; }
+        #status { margin-top: 20px; color: #666; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>🔴 YT Video Downloader</h2>
+    <p style="color: #666; font-size: 14px;">Paste the link below to download your video instantly for free.</p>
+    <input type="text" id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
+    <br>
+    <button onclick="startDownload()">Download Now</button>
+    <div id="status"></div>
+</div>
+
+<script>
+function startDownload() {
+    const url = document.getElementById('videoUrl').value;
+    const statusDiv = document.getElementById('status');
+    
+    if(!url) {
+        alert("Pehle YouTube link paste karein!");
+        return;
+    }
+    
+    statusDiv.innerHTML = "🔄 Video process ho rahi hai... Download khud shuru ho jayega.";
+    window.location.href = `/download?url=${encodeURIComponent(url)}`;
+}
+</script>
+
+</body>
+</html>
