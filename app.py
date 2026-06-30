@@ -15,19 +15,17 @@ def download_video():
     try:
         ydl_opts = {
             "format": "best",
-            "noplaylist": True,
             "quiet": True,
             "no_warnings": True,
             "nocheckcertificate": True,
-            "headers": {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            }
+            # Instagram ke liye basic configurations
+            "addheaders": [("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")]
         }
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(video_url, download=False)
             return redirect(info.get("url"))
     except Exception as e:
-        return f"YouTube Block Error: {str(e)}", 500
+        return f"Instagram Download Error: {str(e)}", 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=7860)
